@@ -4,7 +4,6 @@ import Fighter from './Fighter';
 import Race, { Elf } from './Races';
 import getRandomInt from './utils';
 
-getRandomInt(1, 10);
 export default class Character implements Fighter {
   private _race: Race;
   private _archetype: Archetype;
@@ -14,6 +13,7 @@ export default class Character implements Fighter {
   private _defense: number;
   private _dexterity: number;
   private _energy: Energy;
+  // private _lifeDamage: number;
 
   constructor(name: string) {
     this._dexterity = getRandomInt(1, 10);
@@ -23,10 +23,78 @@ export default class Character implements Fighter {
     this._lifePoints = this._maxLifePoints;
     this._strength = getRandomInt(1, 10);
     this._defense = getRandomInt(1, 10);
+    // this._lifeDamage = this._maxLifePoints / 3;
     this._energy = {
       type_: this._archetype.energyType,
       amount: getRandomInt(1, 10),
     };
   }
-  // get attack(enemy: Fighter) {
+
+  get race() {
+    return this._race;
+  }
+
+  get archetype() {
+    return this._archetype;
+  }
+
+  get lifePoints() {
+    return this._lifePoints;
+  }
+
+  get strength() {
+    return this._strength;
+  }
+
+  get defense() {
+    return this._defense;
+  }
+
+  get dexterity() {
+    return this._dexterity;
+  }
+
+  get energy() {
+    return {
+      type_: this._energy.type_,
+      amount: this._energy.amount,
+    };
+  }
+
+  receiveDamage(attackPoints: number): number {
+    const damage = attackPoints - this._defense;
+    if (damage > 0) {
+      this._lifePoints -= damage;
+    } else {
+      this._lifePoints -= 1;
+    }
+    this._lifePoints = this._lifePoints <= 0 ? -1 : this._lifePoints;
+
+    return this._lifePoints;
+  }
+
+  attack(enemy: Fighter): void {
+    enemy.receiveDamage(this._strength);
+  }
+
+  levelUp(): void {
+    this._defense += getRandomInt(1, 10);
+    this._dexterity += getRandomInt(1, 10);
+    this._strength += getRandomInt(1, 10);
+    this._maxLifePoints += getRandomInt(1, 10);
+    this._energy.amount = 10;
+
+    if (this._maxLifePoints > this._race.maxLifePoints) {
+      this._maxLifePoints = this._race.maxLifePoints;
+    }
+    this._lifePoints = this._maxLifePoints;
+  }
+
+  // special(): void {
+  //   if (this._lifePoints < this._lifeDamage) {
+  //     this._lifePoints <= this._lifeDamage;
+  //   } else {
+  //     this._lifeDamage;
+  //   }
+  // }
 }
