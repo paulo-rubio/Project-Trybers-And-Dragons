@@ -9,16 +9,18 @@ export default class PVE extends Battle {
     this._monsters = monsters;
   }
 
-  monsterOrPlayerDeath(): boolean {
-    const platetAlive = this.player.lifePoints > 0;
-    const monsterAlive = this._monsters.some((monster) =>
-      monster.lifePoints > 0);
-    if (platetAlive && monsterAlive) return false;
-    return true;
+  playerAlive(): boolean {
+    return this.player.lifePoints > 0;
+  }
+
+  monsterAlive(): boolean {
+    return this._monsters.some(
+      (live) => live.lifePoints > 0,
+    );
   }
 
   fight(): number {
-    if (!this.monsterOrPlayerDeath()) {
+    while (this.playerAlive() && this.monsterAlive) {
       this._monsters.forEach((monster) => {
         this.player.attack(monster);
         monster.attack(this.player);
