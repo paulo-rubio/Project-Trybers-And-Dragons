@@ -1,13 +1,12 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# TAD - Trybers-And-Dragons
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+# Projeto
+Projeto Desenvolvido utilizando TypeScript; 
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Tecnologias
+Para o desenvolvimento desse projeto foi utilizado:
+
+- TypeScript
+
+# Nesse projeto tive que desenvolver:
+- Um rpg utilizando TypeScript, nele criamos alguns personagens e mosntrols, e a lógica de dar dano, subir de level, e receber dano 
